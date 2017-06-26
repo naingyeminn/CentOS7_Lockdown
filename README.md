@@ -1,4 +1,4 @@
-#CentOS7 Lockdown
+# CentOS7 Lockdown
 
 **CentOS7-cis.ks:**  Kickstart file for CentOS 7, aims to provide a starting point for a Linux admin to build a host which meets the CIS CentOS 7 benchmark (v2.1.1).
 

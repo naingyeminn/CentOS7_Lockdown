@@ -240,8 +240,8 @@ cat << EOF >> /etc/audit/rules.d/audit.rules
 -a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts
 -a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts
 
--a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 \ -F auid!=4294967295 -k delete
--a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 \ -F auid!=4294967295 -k delete
+-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete
 
 -w /etc/sudoers -p wa -k scope
 -w /etc/sudoers.d -p wa -k scope

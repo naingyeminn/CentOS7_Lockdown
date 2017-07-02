@@ -3,7 +3,7 @@
 #Licenced under the BSD Licence See LICENCE file for details
 
 install
-lang en_GB.UTF-8
+lang en_US.UTF-8
 keyboard --vckeymap=us --xlayouts='us'
 timezone Asia/Yangon --isUtc
 auth --useshadow --passalgo=sha512 			# CIS 5.3.4

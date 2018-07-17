@@ -732,11 +732,12 @@ function ungrouped_files {
 function suid_exes {
   # For every suid exe on the host use the rpm cmd to verify that it should be suid executable
   # If the rpm cmd returns no output then the rpm is as it was when it was installed so no prob
-  local suid_exes
+  local suid_exes rpm rpm_out
   suid_exes="$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -print)"
   for suid_exe in ${suid_exes}
   do
-    rpm_out="$(rpm -V $(rpm -qf ${suid_exe}))"
+    rpm=$(rpm -qf $suid_exe)
+    rpm_out="$(rpm -V --noconfig $rpm | grep $suid_exe)"
     [[ -z "${rpm_out}" ]] || return
   done
 }
@@ -744,11 +745,12 @@ function suid_exes {
 function sgid_exes {
   # For every sgid exe on the host use the rpm cmd to verify that it should be sgid executable
   # If the rpm cmd returns no output then the rpm is as it was when it was installed so no prob
-  local sgid_exes
+  local sgid_exes rpm rpm_out
   sgid_exes="$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -print)"
   for sgid_exe in ${sgid_exes}
   do
-    rpm_out="$(rpm -V $(rpm -qf ${sgid_exe}))"
+    rpm=$(rpm -qf $suid_exe)
+    rpm_out="$(rpm -V --noconfig $rpm | grep $suid_exe)"
     [[ -z "${rpm_out}" ]] || return
   done
 }

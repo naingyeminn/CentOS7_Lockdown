@@ -978,12 +978,12 @@ function duplicate_gids {
 
 function chk_uids_4_res {
   local default_users='root bin daemon adm lp sync shutdown halt mail news uucp operator games \
-gopher ftp nobody nscd vcsa rpc mailnull smmsp pcap ntp dbus avahi sshd rpcuser \ 
+gopher ftp nobody nscd vcsa rpc mailnull smmsp pcap ntp dbus avahi sshd rpcuser systemd-network \
 nfsnobody haldaemon avahi-autoipd distcache apache oprofile webalizer dovecot squid \
 named xfs gdm sabayon usbmuxd rtkit abrt saslauth pulse postfix tcpdump polkitd tss chrony'
   while read user uid; do
     local found=0
-    for duser in ${default_users} ; do
+    for duser in ${default_users} ${custom_system_users}; do
       if [[ "${user}" = "${duser}" ]] ; then
         found=1
       fi

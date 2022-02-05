@@ -541,6 +541,11 @@ pam_su='/etc/pam.d/su'
 line_num="$(grep -n "^\#auth[[:space:]]*required[[:space:]]*pam_wheel.so[[:space:]]*use_uid" ${pam_su} | cut -d: -f1)"
 sed -i "${line_num} a auth		required	pam_wheel.so use_uid" ${pam_su}
 
+
+echo "prohibit password reuse"
+cp /etc/pam.d/password-auth $AUDITDIR/password-reuse_$TIME.bak
+echo "password    required     <pam_unix.so|pam_pwhistory.so> use_authtok sha512 shadow remember=5" >> /etc/pam.d/password-auth
+
 echo ""
 echo "Successfully Completed"
 echo "Please check $AUDITDIR"
